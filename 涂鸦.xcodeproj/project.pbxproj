@@ -276,7 +276,8 @@
 				TargetAttributes = {
 					94600FC81BDE0F5A006660D3 = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = M66K5RY9PU;
+						DevelopmentTeam = UAE53M7NYZ;
+						ProvisioningStyle = Manual;
 					};
 					94600FE11BDE0F5B006660D3 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -495,11 +496,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = UAE53M7NYZ;
 				INFOPLIST_FILE = "涂鸦/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.monkey.Tuya;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miaoyu.Tuya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "212a41b8-647e-4317-9932-fd91fb74be81";
+				PROVISIONING_PROFILE_SPECIFIER = mewtech_dev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -510,11 +514,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = UAE53M7NYZ;
 				INFOPLIST_FILE = "涂鸦/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.monkey.Tuya;
+				PRODUCT_BUNDLE_IDENTIFIER = com.miaoyu.Tuya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "212a41b8-647e-4317-9932-fd91fb74be81";
+				PROVISIONING_PROFILE_SPECIFIER = mewtech_dev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

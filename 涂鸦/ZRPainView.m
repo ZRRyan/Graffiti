@@ -70,16 +70,41 @@
  */
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+        UITouch *touch = [touches anyObject];
+        CGPoint currPos = [touch locationInView:touch.view];
        if (self.status == line) {
     
-           UITouch *touch = [touches anyObject];
-           CGPoint currPos = [touch locationInView:touch.view];
-           
            UIBezierPath *currentPath = [self.paths lastObject];
            [currentPath addLineToPoint:currPos];
     
            [self setNeedsDisplay];
-    }
+       } else if (self.status == rect) {
+           // 画矩形
+           UIBezierPath *currentPath = [self.paths lastObject];
+           [currentPath removeAllPoints];
+            [currentPath moveToPoint:self.startPoint];
+           [currentPath addLineToPoint:CGPointMake(currPos.x, self.startPoint.y)];
+           [currentPath addLineToPoint:CGPointMake(currPos.x, currPos.y)];
+           [currentPath addLineToPoint:CGPointMake(self.startPoint.x, currPos.y)];
+           [currentPath addLineToPoint:CGPointMake(self.startPoint.x, self.startPoint.y)];
+           
+           
+           [self setNeedsDisplay];
+       } else if (self.status == arrow) {
+           UIBezierPath *currentPath = [self.paths lastObject];
+           [currentPath removeAllPoints];
+           [currentPath moveToPoint:self.startPoint];
+           
+           [currentPath addLineToPoint:currPos];
+           
+           // 画箭头
+           [currentPath addLineToPoint:[self findLeftPointWithEndPoint:currPos]];
+           
+           [currentPath moveToPoint:currPos];
+           [currentPath addLineToPoint:[self findRightPointWithEndPoint:currPos]];
+           
+           [self setNeedsDisplay];
+       }
 }
 
 - (CGPoint)shapeForLineWithAngle:(float)angle length:(float)length  toPoint:(CGPoint)toPoint{
@@ -93,36 +118,36 @@
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     
-    UITouch *touch = [touches anyObject];
-    CGPoint currPos = [touch locationInView:touch.view];
-    
-    if (self.status == arrow) {
-        UIBezierPath *currentPath = [self.paths lastObject];
-        [currentPath addLineToPoint:currPos];
-        
-        // 画箭头
-        [currentPath addLineToPoint:[self findLeftPointWithEndPoint:currPos]];
-        
-        [currentPath moveToPoint:currPos];
-        [currentPath addLineToPoint:[self findRightPointWithEndPoint:currPos]];
-        
-        [self setNeedsDisplay];
-    }
-    else if (self.status == rect) {
-        // 画矩形
-        UIBezierPath *currentPath = [self.paths lastObject];
-        [currentPath addLineToPoint:CGPointMake(currPos.x, self.startPoint.y)];
-        [currentPath addLineToPoint:CGPointMake(currPos.x, currPos.y)];
-        [currentPath addLineToPoint:CGPointMake(self.startPoint.x, currPos.y)];
-        [currentPath addLineToPoint:CGPointMake(self.startPoint.x, self.startPoint.y)];
-        [self setNeedsDisplay];
-    }
-    else if(self.status == line)
-    {
-        UIBezierPath *currentPath = [self.paths lastObject];
-        [currentPath addLineToPoint:currPos];
-        [self setNeedsDisplay];
-    }
+//    UITouch *touch = [touches anyObject];
+//    CGPoint currPos = [touch locationInView:touch.view];
+//
+//    if (self.status == arrow) {
+//        UIBezierPath *currentPath = [self.paths lastObject];
+//        [currentPath addLineToPoint:currPos];
+//
+//        // 画箭头
+//        [currentPath addLineToPoint:[self findLeftPointWithEndPoint:currPos]];
+//
+//        [currentPath moveToPoint:currPos];
+//        [currentPath addLineToPoint:[self findRightPointWithEndPoint:currPos]];
+//
+//        [self setNeedsDisplay];
+//    }
+//    else if (self.status == rect) {
+//        // 画矩形
+//        UIBezierPath *currentPath = [self.paths lastObject];
+//        [currentPath addLineToPoint:CGPointMake(currPos.x, self.startPoint.y)];
+//        [currentPath addLineToPoint:CGPointMake(currPos.x, currPos.y)];
+//        [currentPath addLineToPoint:CGPointMake(self.startPoint.x, currPos.y)];
+//        [currentPath addLineToPoint:CGPointMake(self.startPoint.x, self.startPoint.y)];
+//        [self setNeedsDisplay];
+//    }
+//    else if(self.status == line)
+//    {
+//        UIBezierPath *currentPath = [self.paths lastObject];
+//        [currentPath addLineToPoint:currPos];
+//        [self setNeedsDisplay];
+//    }
 
 }
 
